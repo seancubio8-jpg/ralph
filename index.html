@@ -1,0 +1,3149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="Ralph Tuliao | IT Student and Aspiring Developer">
+    <title>Ralph Tuliao | Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #080808;
+            --surface: #111;
+            --surface2: #171717;
+            --border: #292929;
+            --red: #ff3434;
+            --red-dark: #bd1717;
+            --text: #f5f5f5;
+            --muted: #a0a0a0;
+            --radius: 16px;
+            --transition: .3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section:nth-of-type(even) {
+            background: #0b0b0b;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+        }
+
+        .eyebrow {
+            color: var(--red);
+            font: 700 12px "Space Grotesk", sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font: 700 clamp(30px, 5vw, 46px) "Space Grotesk", sans-serif;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .section-subtitle {
+            max-width: 680px;
+            color: var(--muted);
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .accent {
+            color: var(--red);
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .card:hover {
+            border-color: #4b2929;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            padding: 12px 19px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border-color: #414141;
+            color: var(--text);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .btn-small {
+            padding: 9px 13px;
+            font-size: 12px;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 1000;
+            background: rgba(8, 8, 8, .92);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .nav-inner {
+            min-height: 76px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            font: 700 23px "Space Grotesk", sans-serif;
+            letter-spacing: -1px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 19px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #bdbdbd;
+            font-size: 12px;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--red);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 135px 0 85px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 80% 40%, rgba(255, 52, 52, .1), transparent 38%),
+                var(--bg);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #dedede;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .025);
+            border-radius: 50px;
+            padding: 8px 13px;
+            font-size: 11px;
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 12px var(--red);
+        }
+
+        .hero h1 {
+            font: 700 clamp(45px, 7vw, 78px) "Space Grotesk", sans-serif;
+            line-height: 1.02;
+            letter-spacing: -4px;
+            margin-bottom: 23px;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+        }
+
+        .hero-description {
+            max-width: 560px;
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+
+        .meta-item strong {
+            display: block;
+            font: 700 21px "Space Grotesk", sans-serif;
+        }
+
+        .meta-item span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .hero-image-wrap {
+            width: min(100%, 360px);
+            margin: auto;
+            position: relative;
+        }
+
+        .hero-image-frame {
+            padding: 12px;
+            border: 1px solid #3c2525;
+            border-radius: 25px;
+            transform: rotate(2deg);
+            background: rgba(255, 52, 52, .035);
+        }
+
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 17px;
+            background: #171717;
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 28px;
+            left: -28px;
+            padding: 13px 17px;
+            border: 1px solid var(--border);
+            background: #101010;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .image-caption strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .image-caption span {
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 17px;
+            font-size: 14px;
+        }
+
+        .about-highlight {
+            padding: 26px;
+        }
+
+        .about-highlight h3 {
+            font: 600 20px "Space Grotesk", sans-serif;
+            margin-bottom: 13px;
+        }
+
+        .about-highlight p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .info-list {
+            margin-top: 22px;
+            display: grid;
+            gap: 13px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+        }
+
+        .info-row span:first-child {
+            color: var(--muted);
+        }
+
+        .info-row span:last-child {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        /* SKILLS, PROJECTS AND CERTIFICATES GRID */
+        .skills-grid,
+        .projects-grid,
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card,
+        .certificate-card {
+            padding: 24px;
+        }
+
+        .skill-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 52, 52, .1);
+            border: 1px solid rgba(255, 52, 52, .2);
+            border-radius: 12px;
+            color: var(--red);
+            font-size: 19px;
+            margin-bottom: 17px;
+        }
+
+        .skill-card h3,
+        .certificate-card h3 {
+            font: 600 18px "Space Grotesk", sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p,
+        .certificate-card p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 17px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px 9px;
+            color: #ccc;
+            background: #171717;
+            font-size: 10px;
+        }
+
+        /* PROJECTS */
+        .project-card {
+            overflow: hidden;
+        }
+
+        .project-preview {
+            min-height: 175px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background:
+                radial-gradient(circle at 80% 15%, rgba(255, 52, 52, .17), transparent 45%),
+                #151515;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-number {
+            color: var(--red);
+            font: 700 12px "Space Grotesk", sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .project-preview h3 {
+            font: 700 25px "Space Grotesk", sans-serif;
+            line-height: 1.2;
+        }
+
+        .project-content {
+            padding: 22px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 17px;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 19px;
+        }
+
+        /* PROBLEM SOLVING */
+        .problem-intro {
+            max-width: 760px;
+            margin-bottom: 35px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .problem-card {
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--red);
+        }
+
+        .problem-number {
+            display: inline-block;
+            color: var(--red);
+            font: 700 12px "Space Grotesk", sans-serif;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .problem-card h3 {
+            font: 600 19px "Space Grotesk", sans-serif;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .problem-detail {
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .problem-detail strong {
+            color: #f4f4f4;
+        }
+
+        .problem-lesson {
+            padding: 13px;
+            background: rgba(255, 52, 52, .07);
+            border: 1px solid rgba(255, 52, 52, .15);
+            border-radius: 9px;
+            color: #ddd;
+            font-size: 12px;
+        }
+
+        .problem-lesson strong {
+            color: var(--red);
+        }
+
+        .process-card {
+            margin-top: 25px;
+            padding: 30px;
+        }
+
+        .process-card h3 {
+            font: 600 23px "Space Grotesk", sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .process-description {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .process-step {
+            padding: 17px 13px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .process-step span {
+            display: block;
+            color: var(--red);
+            font: 700 20px "Space Grotesk", sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .process-step h4 {
+            font: 600 15px "Space Grotesk", sans-serif;
+            margin-bottom: 6px;
+        }
+
+        .process-step p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .problem-closing {
+            margin-top: 22px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #ccc;
+            font-size: 13px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* CERTIFICATES */
+        .certificate-card {
+            padding: 0;
+            overflow: hidden;
+            transition: transform var(--transition), border-color var(--transition);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--red);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 230px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0b0b0b;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .certificate-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            transition: transform var(--transition);
+        }
+
+        .certificate-card:hover .certificate-image img {
+            transform: scale(1.03);
+        }
+
+        .certificate-content {
+            padding: 22px;
+        }
+
+        .certificate-icon {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .certificate-content h3 {
+            font: 600 18px "Space Grotesk", sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .certificate-content p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 17px;
+        }
+
+        .certificate-status {
+            display: inline-block;
+            color: var(--red);
+            margin-top: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* REFLECTION */
+        .reflection-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .reflection-card {
+            padding: 27px;
+        }
+
+        .reflection-card h3 {
+            font: 600 21px "Space Grotesk", sans-serif;
+            margin-bottom: 14px;
+        }
+
+        .reflection-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .career-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .career-list li {
+            color: #ddd;
+            font-size: 13px;
+            padding-left: 23px;
+            position: relative;
+        }
+
+        .career-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* VIDEO */
+        .video-card {
+            padding: 20px;
+            max-width: 850px;
+        }
+
+        .video-card video {
+            width: 100%;
+            max-height: 480px;
+            background: #000;
+            border-radius: 10px;
+        }
+
+        .video-caption {
+            padding: 17px 4px 2px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 35px;
+        }
+
+        .contact-info h3 {
+            font: 600 24px "Space Grotesk", sans-serif;
+            margin-bottom: 14px;
+        }
+
+        .contact-info>p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .contact-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+
+        .contact-item strong {
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-form {
+            padding: 26px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ddd;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: #090909;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 13px;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--red);
+        }
+
+        .form-group textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 25px 0;
+            border-top: 1px solid var(--border);
+            background: #070707;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .back-top {
+            color: var(--red);
+            font-size: 12px;
+        }
+
+        /* MODALS */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: rgba(0, 0, 0, .84);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(760px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #101010;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            animation: modalIn .22s ease;
+        }
+
+        .modal-content.demo-content {
+            width: min(900px, 100%);
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 13px;
+            right: 15px;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #191919;
+            color: #fff;
+            font-size: 20px;
+            z-index: 2;
+        }
+
+        .modal-content h2 {
+            font: 700 27px "Space Grotesk", sans-serif;
+            padding-right: 35px;
+            margin-bottom: 13px;
+        }
+
+        .modal-content>p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 13px;
+        }
+
+        .modal-content .tags {
+            margin: 16px 0;
+        }
+
+        .resume-preview {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 15px 0;
+            background: #080808;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        /* DEMO LAYOUT */
+        .demo-topline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .demo-label {
+            display: inline-block;
+            color: var(--red);
+            border: 1px solid rgba(255, 52, 52, .35);
+            background: rgba(255, 52, 52, .08);
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .demo-layout {
+            display: grid;
+            grid-template-columns: 1.5fr .8fr;
+            gap: 20px;
+        }
+
+        .demo-panel {
+            background: #151515;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 20px;
+            min-width: 0;
+        }
+
+        .demo-panel h3 {
+            font: 600 18px "Space Grotesk", sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .demo-panel h4 {
+            font: 600 14px "Space Grotesk", sans-serif;
+            margin: 15px 0 8px;
+        }
+
+        .demo-muted {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .demo-field {
+            display: grid;
+            gap: 6px;
+            margin-bottom: 13px;
+        }
+
+        .demo-field label {
+            font-size: 11px;
+            color: #ddd;
+        }
+
+        .demo-field input,
+        .demo-field select {
+            width: 100%;
+            min-width: 0;
+            padding: 11px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #090909;
+            color: white;
+            outline: none;
+        }
+
+        .demo-field input:focus,
+        .demo-field select:focus {
+            border-color: var(--red);
+        }
+
+        .demo-products {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .demo-product {
+            padding: 13px;
+            border: 1px solid var(--border);
+            background: #101010;
+            border-radius: 11px;
+            min-width: 0;
+        }
+
+        .demo-product h4 {
+            margin: 9px 0 3px;
+            font-size: 14px;
+        }
+
+        .demo-product p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .demo-price {
+            color: var(--red);
+            font-weight: 700;
+            margin: 7px 0 10px;
+            font-size: 14px;
+        }
+
+        .product-art {
+            display: grid;
+            place-items: center;
+            min-height: 105px;
+            border-radius: 8px;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(255, 52, 52, .18), transparent 65%),
+                #202020;
+            font-size: 45px;
+        }
+
+        .demo-product select,
+        .demo-product input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            background: #080808;
+            border: 1px solid #333;
+            border-radius: 7px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .demo-product .btn {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .cart-list {
+            display: grid;
+            gap: 11px;
+            margin: 12px 0 18px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item small {
+            display: block;
+            color: var(--muted);
+        }
+
+        .cart-item button {
+            background: transparent;
+            border: 0;
+            color: var(--red);
+            font-size: 11px;
+        }
+
+        .cart-empty {
+            color: var(--muted);
+            font-size: 12px;
+            padding: 12px 0;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            padding-top: 12px;
+            border-top: 1px solid #444;
+        }
+
+        .cart-total strong {
+            color: var(--red);
+        }
+
+        .demo-notice {
+            padding: 11px 12px;
+            border: 1px solid rgba(255, 52, 52, .2);
+            border-radius: 8px;
+            color: #ccc;
+            background: rgba(255, 52, 52, .06);
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        .demo-message {
+            margin-top: 12px;
+            color: #ff8b8b;
+            font-size: 12px;
+            min-height: 18px;
+        }
+
+        .room-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .room-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 13px;
+            background: #101010;
+            cursor: pointer;
+        }
+
+        .room-option:has(input:checked) {
+            border-color: var(--red);
+            background: rgba(255, 52, 52, .06);
+        }
+
+        .room-option input {
+            accent-color: var(--red);
+        }
+
+        .room-emoji {
+            font-size: 28px;
+        }
+
+        .room-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .room-info strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .room-info small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .room-price {
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero-grid {
+                gap: 35px;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .certificates-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                right: 0;
+                padding: 18px 5% 24px;
+                background: #0b0b0b;
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px 0;
+                font-size: 13px;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .reflection-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-grid {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons,
+            .hero-meta {
+                justify-content: center;
+            }
+
+            .hero-image-wrap {
+                width: min(75%, 320px);
+                margin-top: 10px;
+            }
+
+            .image-caption {
+                left: -12px;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .demo-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .skills-grid,
+            .projects-grid,
+            .certificates-grid,
+            .process-grid,
+            .demo-products {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-image {
+                height: 220px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .section-title {
+                letter-spacing: -1px;
+            }
+
+            .process-card,
+            .problem-card,
+            .contact-form {
+                padding: 21px;
+            }
+
+            .modal-content {
+                padding: 23px 19px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .demo-panel {
+                padding: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="#home" class="logo">RALPH<span>.</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="navLinks">☰</button>
+
+            <nav aria-label="Main navigation">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#problem-solving">Problem Solving</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
+                    <li><a href="#reflection">Reflection</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div class="hero-content reveal">
+                    <div class="hero-label">
+                        <span class="status-dot"></span>
+                        IT STUDENT · ASPIRING DEVELOPER
+                    </div>
+
+                    <h1>Building the<br>digital <span>future.</span></h1>
+
+                    <p class="hero-description">
+                        Hello! I'm Ralph Tuliao, an IT student interested in web development,
+                        system design, and technology. I enjoy learning how websites and
+                        applications work and finding practical solutions to technical problems.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">Explore My Work ↗</a>
+                        <button class="btn btn-outline" onclick="openResume()">Quick View Resume</button>
+                        <a href="#contact" class="btn btn-outline">Let's Connect</a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <strong>IT</strong>
+                            <span>Field of Study</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Web</strong>
+                            <span>Development Interest</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Always</strong>
+                            <span>Learning and Improving</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-image-wrap reveal">
+                    <div class="hero-image-frame">
+                        <img class="hero-image" src="assets/images/ralph-tuliao.jpg" alt="Portrait of Ralph Tuliao"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+
+                        <div
+                            style="display:none;aspect-ratio:4/5;place-items:center;color:#777;background:#171717;border-radius:17px;font-size:13px;">
+                            Add your profile photo
+                        </div>
+                    </div>
+
+                    <div class="image-caption">
+                        <strong>Ralph Tuliao</strong>
+                        <span>IT Student & Developer in Training</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">01 / ABOUT ME</p>
+                    <h2 class="section-title">Getting to know <span class="accent">me.</span></h2>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="about-text reveal">
+                        <p>
+                            I am an Information Technology student who is developing my skills
+                            in programming, website development, and information systems.
+                            I believe technology can help make everyday tasks easier and more organized.
+                        </p>
+
+                        <p>
+                            During my studies, I work on projects that help me understand how a
+                            system is planned, designed, developed, and tested. These activities
+                            allow me to apply classroom lessons to practical situations.
+                        </p>
+
+                        <p>
+                            My goal is to keep improving my technical skills, gain experience
+                            through real projects, and become a responsible developer who creates
+                            useful and reliable applications.
+                        </p>
+                    </div>
+
+                    <div class="card about-highlight reveal">
+                        <h3>A little more about me</h3>
+
+                        <p>
+                            I value patience, continuous learning, teamwork, and solving problems
+                            one step at a time.
+                        </p>
+
+                        <div class="info-list">
+                            <div class="info-row">
+                                <span>Name</span>
+                                <span>Ralph Tuliao</span>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Program</span>
+                                <span>Information Technology</span>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Interests</span>
+                                <span>Web Development, Systems</span>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Current Focus</span>
+                                <span>Learning and Building Projects</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section" id="skills">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">02 / TECHNICAL SKILLS</p>
+                    <h2 class="section-title">Tools I use to <span class="accent">build.</span></h2>
+
+                    <p class="section-subtitle">
+                        These are areas I am learning and practicing through coursework,
+                        exercises, and personal or academic projects.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+
+                    <article class="card skill-card reveal">
+                        <div class="skill-icon">⌘</div>
+                        <h3>Web Development</h3>
+                        <p>Creating the structure, appearance, and interactions of websites.</p>
+
+                        <div class="tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Responsive Design</span>
+                        </div>
+                    </article>
+
+                    <article class="card skill-card reveal">
+                        <div class="skill-icon">▤</div>
+                        <h3>Backend & Database</h3>
+                        <p>Learning how websites process information and store records.</p>
+
+                        <div class="tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">CRUD</span>
+                            <span class="tag">Database Basics</span>
+                        </div>
+                    </article>
+
+                    <article class="card skill-card reveal">
+                        <div class="skill-icon">⚙</div>
+                        <h3>Development Tools</h3>
+                        <p>Using tools to write code, manage files, and troubleshoot issues.</p>
+
+                        <div class="tags">
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">GitHub</span>
+                            <span class="tag">Browser DevTools</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section" id="projects">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">03 / SELECTED PROJECTS</p>
+                    <h2 class="section-title">Things I've been <span class="accent">working on.</span></h2>
+
+                    <p class="section-subtitle">
+                        Academic and practice projects that demonstrate my interest in web-based
+                        systems and practical applications.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+
+                    <article class="card project-card reveal">
+                        <div class="project-preview">
+                            <span class="project-number">PROJECT 01</span>
+                            <h3>GrandStay<br>Hotel System</h3>
+                        </div>
+
+                        <div class="project-content">
+                            <p>
+                                A hotel reservation website concept designed to help users explore
+                                rooms and submit booking details through an organized interface.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <button class="btn btn-outline btn-small" onclick="openProject('grandstay')">
+                                    View Details
+                                </button>
+
+                                <button class="btn btn-primary btn-small" onclick="openDemo('grandstay')">
+                                    Live Demo ↗
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card project-card reveal">
+                        <div class="project-preview">
+                            <span class="project-number">PROJECT 02</span>
+                            <h3>JacketsHub<br>E-Commerce</h3>
+                        </div>
+
+                        <div class="project-content">
+                            <p>
+                                An online jacket store concept featuring product browsing,
+                                customer shopping flows, and an administrative dashboard.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">Web Design</span>
+                                <span class="tag">E-Commerce</span>
+                                <span class="tag">Database</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <button class="btn btn-outline btn-small" onclick="openProject('jackets')">
+                                    View Details
+                                </button>
+
+                                <button class="btn btn-primary btn-small" onclick="openDemo('jackets')">
+                                    Live Demo ↗
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card project-card reveal">
+                        <div class="project-preview">
+                            <span class="project-number">PROJECT 03</span>
+                            <h3>Food Ordering<br>System</h3>
+                        </div>
+
+                        <div class="project-content">
+                            <p>
+                                A food ordering system concept with menu browsing, order management,
+                                and inventory tracking features.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">Web Application</span>
+                                <span class="tag">Ordering</span>
+                                <span class="tag">Inventory</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <button class="btn btn-outline btn-small" onclick="openProject('food')">
+                                    View Details
+                                </button>
+
+                                <button class="btn btn-primary btn-small" onclick="openDemo('food')">
+                                    Live Demo ↗
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEM SOLVING -->
+        <section class="section" id="problem-solving">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">04 / HOW I APPROACH PROBLEMS</p>
+                    <h2 class="section-title">
+                        Think clearly.<br>
+                        <span class="accent">Test step by step.</span>
+                    </h2>
+                </div>
+
+                <p class="problem-intro reveal">
+                    I approach problems by understanding the issue, checking possible causes,
+                    and testing solutions one at a time. I focus on finding the main cause instead
+                    of making random changes. These examples show common technical problems and
+                    how I would troubleshoot them.
+                </p>
+
+                <div class="problem-grid">
+
+                    <article class="card problem-card reveal">
+                        <span class="problem-number">01</span>
+                        <h3>Website Cannot Connect to Database</h3>
+
+                        <p class="problem-detail">
+                            <strong>Possible causes:</strong> The MySQL service is not running,
+                            the database credentials are incorrect, or the database name is wrong.
+                        </p>
+
+                        <p class="problem-detail">
+                            <strong>Diagnostic approach:</strong> Check the database service,
+                            connection settings, database name, and error message.
+                        </p>
+
+                        <div class="problem-lesson">
+                            <strong>Lesson:</strong> Check the database configuration and test
+                            the connection before changing other code.
+                        </div>
+                    </article>
+
+                    <article class="card problem-card reveal">
+                        <span class="problem-number">02</span>
+                        <h3>PHP Page Reports an Undefined Function</h3>
+
+                        <p class="problem-detail">
+                            <strong>Possible causes:</strong> The function is missing, its name
+                            is misspelled, or a required PHP file was not included.
+                        </p>
+
+                        <p class="problem-detail">
+                            <strong>Diagnostic approach:</strong> Read the error message, search
+                            for the function, and check the include or require statements.
+                        </p>
+
+                        <div class="problem-lesson">
+                            <strong>Lesson:</strong> Error messages help identify the source of
+                            a problem and avoid unnecessary code changes.
+                        </div>
+                    </article>
+
+                    <article class="card problem-card reveal">
+                        <span class="problem-number">03</span>
+                        <h3>Website Works Locally but Not on Hosting</h3>
+
+                        <p class="problem-detail">
+                            <strong>Possible causes:</strong> Incorrect file paths, case-sensitive
+                            filenames, missing files, or different database settings.
+                        </p>
+
+                        <p class="problem-detail">
+                            <strong>Diagnostic approach:</strong> Compare local and hosted versions,
+                            check file locations and database settings, and review server logs.
+                        </p>
+
+                        <div class="problem-lesson">
+                            <strong>Lesson:</strong> Test after deployment because the hosting
+                            environment may work differently from a local computer.
+                        </div>
+                    </article>
+
+                    <article class="card problem-card reveal">
+                        <span class="problem-number">04</span>
+                        <h3>User Cannot Log In</h3>
+
+                        <p class="problem-detail">
+                            <strong>Possible causes:</strong> Incorrect credentials, validation
+                            errors, a password verification issue, or a database connection problem.
+                        </p>
+
+                        <p class="problem-detail">
+                            <strong>Diagnostic approach:</strong> Test valid and invalid logins,
+                            inspect authentication logic, and check errors without exposing
+                            sensitive information.
+                        </p>
+
+                        <div class="problem-lesson">
+                            <strong>Lesson:</strong> Test usability and security. Passwords
+                            should never appear in error messages or logs.
+                        </div>
+                    </article>
+
+                    <article class="card problem-card reveal">
+                        <span class="problem-number">05</span>
+                        <h3>Excel Results Do Not Look Correct</h3>
+
+                        <p class="problem-detail">
+                            <strong>Possible causes:</strong> Incorrect formulas, missing data,
+                            numbers stored as text, or an incorrect cell range.
+                        </p>
+
+                        <p class="problem-detail">
+                            <strong>Diagnostic approach:</strong> Review the formula, selected
+                            cells, data format, and compare the result with a manual calculation.
+                        </p>
+
+                        <div class="problem-lesson">
+                            <strong>Lesson:</strong> Accurate results depend on clean data,
+                            correct formulas, and checking calculations.
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="card process-card reveal">
+                    <h3>My Problem-Solving Process</h3>
+
+                    <p class="process-description">
+                        A simple process I can follow when working on programming tasks,
+                        system errors, and technical issues.
+                    </p>
+
+                    <div class="process-grid">
+                        <div class="process-step">
+                            <span>01</span>
+                            <h4>Understand</h4>
+                            <p>Identify the problem and expected behavior.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <span>02</span>
+                            <h4>Investigate</h4>
+                            <p>Check error messages, code, data, and settings.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <span>03</span>
+                            <h4>Test</h4>
+                            <p>Try one solution at a time and observe the result.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <span>04</span>
+                            <h4>Verify</h4>
+                            <p>Confirm the fix works and check for other issues.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <span>05</span>
+                            <h4>Learn</h4>
+                            <p>Record the cause and how to prevent it next time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-closing reveal">
+                    My goal is not just to fix a problem, but also to understand why it happened
+                    and how I can improve my skills as an IT student and future developer.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CERTIFICATES: IMAGES ADDED -->
+        <section class="section" id="certificates">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">05 / CERTIFICATES & LEARNING</p>
+
+                    <h2 class="section-title">
+                        Learning one step <span class="accent">at a time.</span>
+                    </h2>
+
+                    <p class="section-subtitle">
+                        My certificates and learning achievements that reflect my continuous
+                        growth as an IT student.
+                    </p>
+                </div>
+
+                <div class="certificates-grid">
+
+                    <!-- CERTIFICATE 1 -->
+                    <article class="card certificate-card reveal">
+
+                        <div class="certificate-image">
+                            <img src="assets/images/ralph1.jpg" alt="Ralph Tuliao Certificate 1" loading="lazy">
+                        </div>
+
+                        <div class="certificate-content">
+                            <div class="certificate-icon">🏅</div>
+
+                            <h3>Web Development</h3>
+
+                            <p>
+                                A certificate showcasing my learning and development
+                                in technology and web development.
+                            </p>
+
+                            <span class="certificate-status">
+                                Learning Achievement
+                            </span>
+                        </div>
+
+                    </article>
+
+                    <!-- CERTIFICATE 2 -->
+                    <article class="card certificate-card reveal">
+
+                        <div class="certificate-image">
+                            <img src="assets/images/ralph2.jpg" alt="Ralph Tuliao Certificate 2" loading="lazy">
+                        </div>
+
+                        <div class="certificate-content">
+                            <div class="certificate-icon">💻</div>
+
+                            <h3>Information Technology</h3>
+
+                            <p>
+                                An achievement representing my interest in IT,
+                                computer systems, and digital technologies.
+                            </p>
+
+                            <span class="certificate-status">
+                                Learning Achievement
+                            </span>
+                        </div>
+
+                    </article>
+
+                    <!-- CERTIFICATE 3 -->
+                    <article class="card certificate-card reveal">
+
+                        <div class="certificate-image">
+                            <img src="assets/images/ralph3.jpg" alt="Ralph Tuliao Certificate 3" loading="lazy">
+                        </div>
+
+                        <div class="certificate-content">
+                            <div class="certificate-icon">📘</div>
+
+                            <h3>Technical Training</h3>
+
+                            <p>
+                                A learning achievement that supports my technical
+                                knowledge and growth as an IT student.
+                            </p>
+
+                            <span class="certificate-status">
+                                Learning Achievement
+                            </span>
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- REFLECTION -->
+        <section class="section" id="reflection">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">06 / REFLECTION & CAREER GOALS</p>
+                    <h2 class="section-title">Growing through <span class="accent">experience.</span></h2>
+                </div>
+
+                <div class="reflection-grid">
+
+                    <article class="card reflection-card reveal">
+                        <h3>My Learning Reflection</h3>
+
+                        <p>
+                            My experience as an IT student has helped me understand that developing
+                            a system requires more than writing code. It also requires planning,
+                            testing, patience, and attention to detail.
+                        </p>
+
+                        <p>
+                            While working on academic projects, I have learned that mistakes are
+                            part of the development process. Reading error messages, checking the
+                            code, and testing possible solutions can help me understand problems
+                            more clearly.
+                        </p>
+
+                        <p>
+                            I still have many things to learn, but I want to continue practicing
+                            and use feedback to improve the quality of my work.
+                        </p>
+                    </article>
+
+                    <article class="card reflection-card reveal">
+                        <h3>My Career Goals</h3>
+
+                        <p>
+                            My goal is to become a skilled IT professional who can contribute
+                            to useful and reliable software projects.
+                        </p>
+
+                        <ul class="career-list">
+                            <li>Improve my programming and debugging skills.</li>
+                            <li>Build more practical web-based applications.</li>
+                            <li>Learn better database and security practices.</li>
+                            <li>Develop teamwork and communication skills.</li>
+                            <li>Gain experience through projects and training.</li>
+                            <li>Keep learning new tools and technologies.</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRODUCTION VIDEO -->
+        <section class="section" id="video">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">07 / INTRODUCTION VIDEO</p>
+                    <h2 class="section-title">A little introduction <span class="accent">from me.</span></h2>
+
+                    <p class="section-subtitle">
+                        Watch my introduction video to learn more about me, my interests,
+                        and my goals as an IT student.
+                    </p>
+                </div>
+
+                <div class="card video-card reveal">
+                    <video controls preload="metadata">
+                        <source src="ralph.mp4" type="video/mp4">
+                        Your browser does not support HTML video.
+                    </video>
+
+                    <p class="video-caption">Personal introduction — Ralph Tuliao</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <p class="eyebrow">08 / CONTACT</p>
+                    <h2 class="section-title">Let's start a <span class="accent">conversation.</span></h2>
+
+                    <p class="section-subtitle">
+                        Have a question, suggestion, or project idea? Feel free to send me a message.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+
+                    <div class="contact-info reveal">
+                        <h3>Get in touch</h3>
+
+                        <p>
+                            I welcome opportunities to learn, collaborate, and connect with people
+                            interested in technology and development.
+                        </p>
+
+                        <div class="contact-item">
+                            <span>Name</span>
+                            <strong>Ralph Tuliao</strong>
+                        </div>
+
+                        <div class="contact-item">
+                            <span>Email</span>
+                            <strong>Replace with your email address</strong>
+                        </div>
+
+                        <div class="contact-item">
+                            <span>Field</span>
+                            <strong>Information Technology</strong>
+                        </div>
+
+                        <div class="contact-item">
+                            <span>Interests</span>
+                            <strong>Web Development & System Design</strong>
+                        </div>
+                    </div>
+
+                    <form class="card contact-form reveal" id="contactForm">
+
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input id="contactName" name="name" type="text" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Your Email</label>
+                            <input id="contactEmail" name="email" type="email" placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input id="contactSubject" name="subject" type="text"
+                                placeholder="What is your message about?" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="message" placeholder="Write your message here..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Prepare Email ↗
+                        </button>
+
+                        <p style="margin-top:12px;font-size:11px;color:var(--muted);">
+                            This form opens your email application. It does not send or store
+                            messages directly on this website.
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© <span id="currentYear"></span> Ralph Tuliao. Personal Portfolio.</p>
+            <p>Designed and built with HTML, CSS, and JavaScript.</p>
+            <a class="back-top" href="#top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <!-- RESUME MODAL -->
+    <div class="modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeTitle">
+        <div class="modal-content">
+
+            <button class="modal-close" onclick="closeModal('resumeModal')" aria-label="Close resume modal">
+                ×
+            </button>
+
+            <p class="eyebrow">QUICK VIEW</p>
+            <h2 id="resumeTitle">My Resume</h2>
+
+            <p>
+                View your resume image below. Replace the image path with your actual resume file.
+            </p>
+
+            <img class="resume-preview" src="assets/images/ralph-tuliao-resume.png" alt="Ralph Tuliao resume preview"
+                onerror="this.alt='Resume preview unavailable. Add assets/images/ralph-tuliao-resume.png to display your resume.';this.style.minHeight='180px';">
+
+            <div class="modal-actions">
+                <a class="btn btn-primary" href="assets/images/ralph-tuliao-resume.png" target="_blank" rel="noopener">
+                    Open Resume ↗
+                </a>
+
+                <a class="btn btn-outline" href="assets/images/ralph-tuliao-resume.png" download>
+                    Download Resume ↓
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PROJECT DETAILS MODAL -->
+    <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+        <div class="modal-content">
+
+            <button class="modal-close" onclick="closeModal('projectModal')" aria-label="Close project details">
+                ×
+            </button>
+
+            <p class="eyebrow">PROJECT DETAILS</p>
+            <h2 id="projectModalTitle">Project Title</h2>
+
+            <p id="projectModalDescription"></p>
+
+            <div class="tags" id="projectModalTags"></div>
+
+            <p>
+                Project information can be updated as the system develops. Add screenshots,
+                source-code links, and actual project features when they are available.
+            </p>
+
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal('projectModal')">
+                    Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- GRANDSTAY INTERACTIVE DEMO -->
+    <div class="modal" id="grandstayDemo" role="dialog" aria-modal="true" aria-labelledby="grandstayTitle">
+        <div class="modal-content demo-content">
+
+            <button class="modal-close" onclick="closeModal('grandstayDemo')" aria-label="Close GrandStay demo">
+                ×
+            </button>
+
+            <div class="demo-topline">
+                <div>
+                    <p class="eyebrow">PROJECT DEMO 01</p>
+                    <h2 id="grandstayTitle">GrandStay Hotel & Suites</h2>
+                </div>
+
+                <span class="demo-label">Interactive preview</span>
+            </div>
+
+            <p>
+                Choose a room, enter your stay dates, and preview a booking summary.
+            </p>
+
+            <div class="demo-layout">
+
+                <div class="demo-panel">
+                    <h3>Choose Your Room</h3>
+
+                    <div class="room-list">
+
+                        <label class="room-option">
+                            <input type="radio" name="hotelRoom" value="standard" checked>
+                            <span class="room-emoji">🛏️</span>
+
+                            <span class="room-info">
+                                <strong>Standard Room</strong>
+                                <small>Comfortable room · 2 guests</small>
+                            </span>
+
+                            <span class="room-price">₱2,000/night</span>
+                        </label>
+
+                        <label class="room-option">
+                            <input type="radio" name="hotelRoom" value="deluxe">
+                            <span class="room-emoji">🛋️</span>
+
+                            <span class="room-info">
+                                <strong>Deluxe Room</strong>
+                                <small>Extra space · 2 guests</small>
+                            </span>
+
+                            <span class="room-price">₱3,500/night</span>
+                        </label>
+
+                        <label class="room-option">
+                            <input type="radio" name="hotelRoom" value="suite">
+                            <span class="room-emoji">🏨</span>
+
+                            <span class="room-info">
+                                <strong>Family Suite</strong>
+                                <small>Spacious suite · 4 guests</small>
+                            </span>
+
+                            <span class="room-price">₱5,000/night</span>
+                        </label>
+
+                    </div>
+
+                    <h4>Reservation Details</h4>
+
+                    <div class="demo-field">
+                        <label for="hotelCheckIn">Check-in date</label>
+                        <input type="date" id="hotelCheckIn">
+                    </div>
+
+                    <div class="demo-field">
+                        <label for="hotelCheckOut">Check-out date</label>
+                        <input type="date" id="hotelCheckOut">
+                    </div>
+
+                    <div class="demo-field">
+                        <label for="hotelGuests">Number of guests</label>
+
+                        <select id="hotelGuests">
+                            <option value="1">1 guest</option>
+                            <option value="2" selected>2 guests</option>
+                            <option value="3">3 guests</option>
+                            <option value="4">4 guests</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="calculateHotelBooking()">
+                        Preview Booking
+                    </button>
+
+                    <p class="demo-message" id="hotelMessage" aria-live="polite"></p>
+                </div>
+
+                <aside class="demo-panel">
+                    <h3>Booking Summary</h3>
+                    <p class="demo-muted">Your estimated reservation</p>
+
+                    <div class="cart-list" id="hotelSummary">
+                        <p class="cart-empty">
+                            Select your room and dates, then preview your booking.
+                        </p>
+                    </div>
+
+                    <div class="cart-total">
+                        <span>Estimated total</span>
+                        <strong id="hotelTotal">₱0</strong>
+                    </div>
+
+                    <div class="demo-notice">
+                        Demo only. This does not reserve a real room or collect payment.
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JACKETSHUB INTERACTIVE DEMO -->
+    <div class="modal" id="jacketsDemo" role="dialog" aria-modal="true" aria-labelledby="jacketsTitle">
+        <div class="modal-content demo-content">
+
+            <button class="modal-close" onclick="closeModal('jacketsDemo')" aria-label="Close JacketsHub demo">
+                ×
+            </button>
+
+            <div class="demo-topline">
+                <div>
+                    <p class="eyebrow">PROJECT DEMO 02</p>
+                    <h2 id="jacketsTitle">JacketsHub Store</h2>
+                </div>
+
+                <span class="demo-label">Interactive preview</span>
+            </div>
+
+            <p>
+                Choose jacket sizes and colors, add items to your cart, and view your sample total.
+            </p>
+
+            <div class="demo-layout">
+
+                <div class="demo-panel">
+                    <h3>Featured Jackets</h3>
+
+                    <div class="demo-products">
+
+                        <article class="demo-product">
+                            <div class="product-art">🧥</div>
+                            <h4>Classic Leather Jacket</h4>
+                            <p>Everyday classic style.</p>
+                            <div class="demo-price">₱2,499</div>
+
+                            <select id="leatherSize" aria-label="Leather jacket size">
+                                <option value="S">Size S</option>
+                                <option value="M" selected>Size M</option>
+                                <option value="L">Size L</option>
+                                <option value="XL">Size XL</option>
+                            </select>
+
+                            <select id="leatherColor" aria-label="Leather jacket color">
+                                <option>Black</option>
+                                <option>Brown</option>
+                            </select>
+
+                            <button class="btn btn-primary btn-small" onclick="addJacket('leather')">
+                                Add to Cart
+                            </button>
+                        </article>
+
+                        <article class="demo-product">
+                            <div class="product-art">🧥</div>
+                            <h4>Urban Denim Jacket</h4>
+                            <p>Casual denim look.</p>
+                            <div class="demo-price">₱1,799</div>
+
+                            <select id="denimSize" aria-label="Denim jacket size">
+                                <option value="S">Size S</option>
+                                <option value="M" selected>Size M</option>
+                                <option value="L">Size L</option>
+                                <option value="XL">Size XL</option>
+                            </select>
+
+                            <select id="denimColor" aria-label="Denim jacket color">
+                                <option>Blue</option>
+                                <option>Black</option>
+                            </select>
+
+                            <button class="btn btn-primary btn-small" onclick="addJacket('denim')">
+                                Add to Cart
+                            </button>
+                        </article>
+
+                        <article class="demo-product">
+                            <div class="product-art">🧥</div>
+                            <h4>Everyday Hoodie</h4>
+                            <p>Soft and relaxed fit.</p>
+                            <div class="demo-price">₱1,299</div>
+
+                            <select id="hoodieSize" aria-label="Hoodie size">
+                                <option value="S">Size S</option>
+                                <option value="M" selected>Size M</option>
+                                <option value="L">Size L</option>
+                                <option value="XL">Size XL</option>
+                            </select>
+
+                            <select id="hoodieColor" aria-label="Hoodie color">
+                                <option>Black</option>
+                                <option>Gray</option>
+                                <option>Red</option>
+                            </select>
+
+                            <button class="btn btn-primary btn-small" onclick="addJacket('hoodie')">
+                                Add to Cart
+                            </button>
+                        </article>
+
+                        <article class="demo-product">
+                            <div class="product-art">🧥</div>
+                            <h4>Windbreaker Jacket</h4>
+                            <p>Lightweight outerwear.</p>
+                            <div class="demo-price">₱1,599</div>
+
+                            <select id="windbreakerSize" aria-label="Windbreaker size">
+                                <option value="S">Size S</option>
+                                <option value="M" selected>Size M</option>
+                                <option value="L">Size L</option>
+                                <option value="XL">Size XL</option>
+                            </select>
+
+                            <select id="windbreakerColor" aria-label="Windbreaker color">
+                                <option>Black</option>
+                                <option>Navy</option>
+                                <option>Green</option>
+                            </select>
+
+                            <button class="btn btn-primary btn-small" onclick="addJacket('windbreaker')">
+                                Add to Cart
+                            </button>
+                        </article>
+
+                    </div>
+
+                    <p class="demo-message" id="jacketMessage" aria-live="polite"></p>
+                </div>
+
+                <aside class="demo-panel">
+                    <h3>🛒 Shopping Cart</h3>
+
+                    <div class="cart-list" id="jacketCart">
+                        <p class="cart-empty">
+                            Your cart is empty. Add a jacket to get started.
+                        </p>
+                    </div>
+
+                    <div class="cart-total">
+                        <span>Cart total</span>
+                        <strong id="jacketTotal">₱0</strong>
+                    </div>
+
+                    <button class="btn btn-outline" style="width:100%;margin-top:15px" onclick="clearJacketCart()">
+                        Clear Cart
+                    </button>
+
+                    <div class="demo-notice">
+                        Demo only. No real order or payment will be processed.
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOD ORDERING INTERACTIVE DEMO -->
+    <div class="modal" id="foodDemo" role="dialog" aria-modal="true" aria-labelledby="foodTitle">
+        <div class="modal-content demo-content">
+
+            <button class="modal-close" onclick="closeModal('foodDemo')" aria-label="Close food ordering demo">
+                ×
+            </button>
+
+            <div class="demo-topline">
+                <div>
+                    <p class="eyebrow">PROJECT DEMO 03</p>
+                    <h2 id="foodTitle">Food Ordering System</h2>
+                </div>
+
+                <span class="demo-label">Interactive preview</span>
+            </div>
+
+            <p>
+                Choose a meal, select a quantity, and build a sample food order.
+            </p>
+
+            <div class="demo-layout">
+
+                <div class="demo-panel">
+                    <h3>Today's Menu</h3>
+
+                    <div class="demo-products">
+
+                        <article class="demo-product">
+                            <div class="product-art">🍳</div>
+                            <h4>Chicken Silog</h4>
+                            <p>Chicken, garlic rice, and egg.</p>
+                            <div class="demo-price">₱120</div>
+
+                            <label class="demo-muted" for="chickenQty">Quantity</label>
+                            <input type="number" id="chickenQty" min="1" max="20" value="1">
+
+                            <button class="btn btn-primary btn-small" onclick="addFood('chicken')">
+                                Add to Order
+                            </button>
+                        </article>
+
+                        <article class="demo-product">
+                            <div class="product-art">🍛</div>
+                            <h4>Tapsilog</h4>
+                            <p>Beef tapa, rice, and egg.</p>
+                            <div class="demo-price">₱135</div>
+
+                            <label class="demo-muted" for="tapsiQty">Quantity</label>
+                            <input type="number" id="tapsiQty" min="1" max="20" value="1">
+
+                            <button class="btn btn-primary btn-small" onclick="addFood('tapsi')">
+                                Add to Order
+                            </button>
+                        </article>
+
+                        <article class="demo-product">
+                            <div class="product-art">🍗</div>
+                            <h4>Fried Chicken Meal</h4>
+                            <p>Crispy chicken with rice.</p>
+                            <div class="demo-price">₱110</div>
+
+                            <label class="demo-muted" for="friedQty">Quantity</label>
+                            <input type="number" id="friedQty" min="1" max="20" value="1">
+
+                            <button class="btn btn-primary btn-small" onclick="addFood('fried')">
+                                Add to Order
+                            </button>
+                        </article>
+
+                        <article class="demo-product">
+                            <div class="product-art">🥤</div>
+                            <h4>Iced Tea</h4>
+                            <p>Refreshing cold drink.</p>
+                            <div class="demo-price">₱35</div>
+
+                            <label class="demo-muted" for="teaQty">Quantity</label>
+                            <input type="number" id="teaQty" min="1" max="20" value="1">
+
+                            <button class="btn btn-primary btn-small" onclick="addFood('tea')">
+                                Add to Order
+                            </button>
+                        </article>
+
+                    </div>
+
+                    <p class="demo-message" id="foodMessage" aria-live="polite"></p>
+                </div>
+
+                <aside class="demo-panel">
+                    <h3>🍽️ Your Order</h3>
+
+                    <div class="cart-list" id="foodCart">
+                        <p class="cart-empty">
+                            No items yet. Choose something from the menu.
+                        </p>
+                    </div>
+
+                    <div class="cart-total">
+                        <span>Total</span>
+                        <strong id="foodTotal">₱0</strong>
+                    </div>
+
+                    <button class="btn btn-primary" style="width:100%;margin-top:15px" onclick="placeSampleFoodOrder()">
+                        Place Sample Order
+                    </button>
+
+                    <button class="btn btn-outline" style="width:100%;margin-top:9px" onclick="clearFoodCart()">
+                        Clear Order
+                    </button>
+
+                    <div class="demo-notice">
+                        Demo only. This does not submit a real order or charge a payment method.
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FOOTER YEAR
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        // MOBILE NAVIGATION
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.textContent = isOpen ? "×" : "☰";
+        });
+
+        document.querySelectorAll("#navLinks a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+        // REVEAL ANIMATIONS
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealElements.forEach(element => revealObserver.observe(element));
+        } else {
+            revealElements.forEach(element => element.classList.add("visible"));
+        }
+
+        // HIGHLIGHT ACTIVE NAVIGATION LINK
+        const pageSections = document.querySelectorAll("main section[id]");
+        const navigationItems = document.querySelectorAll("#navLinks a");
+
+        if ("IntersectionObserver" in window) {
+            const sectionObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navigationItems.forEach(link => {
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") === "#" + entry.target.id
+                            );
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -60% 0px" });
+
+            pageSections.forEach(section => sectionObserver.observe(section));
+        }
+
+        // MODAL HELPERS
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+
+            modal.classList.add("show");
+            document.body.classList.add("modal-open");
+
+            const closeButton = modal.querySelector(".modal-close");
+            if (closeButton) closeButton.focus();
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+
+            modal.classList.remove("show");
+
+            if (!document.querySelector(".modal.show")) {
+                document.body.classList.remove("modal-open");
+            }
+        }
+
+        document.querySelectorAll(".modal").forEach(modal => {
+            modal.addEventListener("click", event => {
+                if (event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                document.querySelectorAll(".modal.show").forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        // RESUME MODAL
+        function openResume() {
+            openModal("resumeModal");
+        }
+
+        // PROJECT INFORMATION
+        const projectData = {
+            grandstay: {
+                title: "GrandStay Hotel & Suites",
+                description: "A hotel reservation website concept focused on presenting rooms, collecting booking details, and making the reservation process easier for visitors.",
+                tags: ["HTML", "CSS", "JavaScript", "Hotel Reservation"]
+            },
+
+            jackets: {
+                title: "JacketsHub E-Commerce System",
+                description: "An online jacket store concept with product browsing, shopping workflows, order management, and an administrative dashboard.",
+                tags: ["E-Commerce", "Product Catalog", "Order Management"]
+            },
+
+            food: {
+                title: "Web-Based Food Ordering System",
+                description: "A food ordering system concept with menu browsing, customer orders, inventory management, and personalized meal recommendation features.",
+                tags: ["Food Ordering", "Inventory", "Meal Recommendations"]
+            }
+        };
+
+        function openProject(projectKey) {
+            const project = projectData[projectKey];
+            if (!project) return;
+
+            document.getElementById("projectModalTitle").textContent = project.title;
+            document.getElementById("projectModalDescription").textContent = project.description;
+
+            const tagContainer = document.getElementById("projectModalTags");
+            tagContainer.replaceChildren();
+
+            project.tags.forEach(tagText => {
+                const tag = document.createElement("span");
+                tag.className = "tag";
+                tag.textContent = tagText;
+                tagContainer.appendChild(tag);
+            });
+
+            openModal("projectModal");
+        }
+
+        // LIVE DEMOS
+        function openDemo(projectKey) {
+            const modalIDs = {
+                grandstay: "grandstayDemo",
+                jackets: "jacketsDemo",
+                food: "foodDemo"
+            };
+
+            const modalID = modalIDs[projectKey];
+
+            if (modalID) {
+                openModal(modalID);
+            }
+        }
+
+        // GRANDSTAY DEMO
+        const hotelPrices = {
+            standard: { name: "Standard Room", price: 2000 },
+            deluxe: { name: "Deluxe Room", price: 3500 },
+            suite: { name: "Family Suite", price: 5000 }
+        };
+
+        // Default dates: tomorrow and the day after tomorrow
+        const today = new Date();
+
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        const dayAfter = new Date(today);
+        dayAfter.setDate(today.getDate() + 2);
+
+        function toDateInput(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getDate()).padStart(2, "0");
+
+            return `${year}-${month}-${day}`;
+        }
+
+        const checkInInput = document.getElementById("hotelCheckIn");
+        const checkOutInput = document.getElementById("hotelCheckOut");
+
+        checkInInput.min = toDateInput(today);
+        checkInInput.value = toDateInput(tomorrow);
+
+        checkOutInput.min = toDateInput(tomorrow);
+        checkOutInput.value = toDateInput(dayAfter);
+
+        checkInInput.addEventListener("change", () => {
+            if (!checkInInput.value) return;
+
+            const nextDay = new Date(checkInInput.value + "T12:00:00");
+            nextDay.setDate(nextDay.getDate() + 1);
+
+            checkOutInput.min = toDateInput(nextDay);
+
+            if (!checkOutInput.value || checkOutInput.value <= checkInInput.value) {
+                checkOutInput.value = toDateInput(nextDay);
+            }
+        });
+
+        function calculateHotelBooking() {
+            const roomKey = document.querySelector('input[name="hotelRoom"]:checked')?.value;
+            const room = hotelPrices[roomKey];
+            const checkIn = checkInInput.value;
+            const checkOut = checkOutInput.value;
+            const guests = Number(document.getElementById("hotelGuests").value);
+            const summary = document.getElementById("hotelSummary");
+            const message = document.getElementById("hotelMessage");
+
+            if (!room || !checkIn || !checkOut) {
+                message.textContent = "Please choose a room and both dates.";
+                return;
+            }
+
+            const start = new Date(checkIn + "T12:00:00");
+            const end = new Date(checkOut + "T12:00:00");
+            const nights = Math.round((end - start) / 86400000);
+
+            if (nights < 1) {
+                message.textContent = "Check-out must be at least one day after check-in.";
+                return;
+            }
+
+            if (roomKey !== "suite" && guests > 2) {
+                message.textContent =
+                    "This room accommodates up to 2 guests. Choose the Family Suite for up to 4 guests.";
+                return;
+            }
+
+            const total = nights * room.price;
+
+            summary.replaceChildren();
+
+            const bookingDetails = [
+                ["Room", room.name + " — ₱" + room.price.toLocaleString() + "/night"],
+                ["Check-in", checkIn],
+                ["Check-out", checkOut],
+                ["Guests", String(guests)],
+                ["Length of stay", nights + " night(s)"]
+            ];
+
+            bookingDetails.forEach(([label, value]) => {
+                const row = document.createElement("div");
+                row.className = "cart-item";
+
+                const info = document.createElement("span");
+                info.textContent = label;
+
+                const detail = document.createElement("small");
+                detail.textContent = value;
+                info.appendChild(detail);
+
+                row.appendChild(info);
+                summary.appendChild(row);
+            });
+
+            document.getElementById("hotelTotal").textContent =
+                "₱" + total.toLocaleString();
+
+            message.textContent = "Booking summary calculated successfully.";
+        }
+
+        // JACKETSHUB DEMO
+        const jacketProducts = {
+            leather: {
+                name: "Classic Leather Jacket",
+                price: 2499,
+                sizeID: "leatherSize",
+                colorID: "leatherColor"
+            },
+
+            denim: {
+                name: "Urban Denim Jacket",
+                price: 1799,
+                sizeID: "denimSize",
+                colorID: "denimColor"
+            },
+
+            hoodie: {
+                name: "Everyday Hoodie",
+                price: 1299,
+                sizeID: "hoodieSize",
+                colorID: "hoodieColor"
+            },
+
+            windbreaker: {
+                name: "Windbreaker Jacket",
+                price: 1599,
+                sizeID: "windbreakerSize",
+                colorID: "windbreakerColor"
+            }
+        };
+
+        let jacketCart = [];
+
+        function addJacket(key) {
+            const product = jacketProducts[key];
+            if (!product) return;
+
+            const size = document.getElementById(product.sizeID).value;
+            const color = document.getElementById(product.colorID).value;
+
+            jacketCart.push({
+                id: Date.now() + Math.random(),
+                name: product.name,
+                price: product.price,
+                size,
+                color
+            });
+
+            document.getElementById("jacketMessage").textContent =
+                product.name + " added to your cart.";
+
+            renderJacketCart();
+        }
+
+        function renderJacketCart() {
+            const container = document.getElementById("jacketCart");
+            const totalElement = document.getElementById("jacketTotal");
+
+            if (jacketCart.length === 0) {
+                container.innerHTML =
+                    '<p class="cart-empty">Your cart is empty. Add a jacket to get started.</p>';
+
+                totalElement.textContent = "₱0";
+                return;
+            }
+
+            container.replaceChildren();
+
+            jacketCart.forEach(item => {
+                const row = document.createElement("div");
+                row.className = "cart-item";
+
+                const info = document.createElement("span");
+                info.textContent = item.name;
+
+                const detail = document.createElement("small");
+                detail.textContent = `Size ${item.size} · ${item.color}`;
+                info.appendChild(detail);
+
+                const right = document.createElement("span");
+                right.style.textAlign = "right";
+
+                const price = document.createElement("strong");
+                price.textContent = "₱" + item.price.toLocaleString();
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.textContent = "Remove";
+
+                remove.addEventListener("click", () => {
+                    jacketCart = jacketCart.filter(cartItem => cartItem.id !== item.id);
+                    renderJacketCart();
+                });
+
+                right.append(price, document.createElement("br"), remove);
+                row.append(info, right);
+                container.appendChild(row);
+            });
+
+            const total = jacketCart.reduce((sum, item) => sum + item.price, 0);
+
+            totalElement.textContent = "₱" + total.toLocaleString();
+        }
+
+        function clearJacketCart() {
+            jacketCart = [];
+            renderJacketCart();
+
+            document.getElementById("jacketMessage").textContent = "Cart cleared.";
+        }
+
+        // FOOD ORDERING DEMO
+        const foodProducts = {
+            chicken: {
+                name: "Chicken Silog",
+                price: 120,
+                quantityID: "chickenQty"
+            },
+
+            tapsi: {
+                name: "Tapsilog",
+                price: 135,
+                quantityID: "tapsiQty"
+            },
+
+            fried: {
+                name: "Fried Chicken Meal",
+                price: 110,
+                quantityID: "friedQty"
+            },
+
+            tea: {
+                name: "Iced Tea",
+                price: 35,
+                quantityID: "teaQty"
+            }
+        };
+
+        let foodCart = [];
+
+        function addFood(key) {
+            const product = foodProducts[key];
+            if (!product) return;
+
+            const quantityInput = document.getElementById(product.quantityID);
+            const quantity = Number(quantityInput.value);
+
+            if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
+                document.getElementById("foodMessage").textContent =
+                    "Choose a quantity from 1 to 20.";
+                return;
+            }
+
+            const existing = foodCart.find(item => item.key === key);
+
+            if (existing) {
+                existing.quantity += quantity;
+            } else {
+                foodCart.push({
+                    key,
+                    name: product.name,
+                    price: product.price,
+                    quantity
+                });
+            }
+
+            document.getElementById("foodMessage").textContent =
+                quantity + " × " + product.name + " added to your order.";
+
+            renderFoodCart();
+        }
+
+        function renderFoodCart() {
+            const container = document.getElementById("foodCart");
+            const totalElement = document.getElementById("foodTotal");
+
+            if (foodCart.length === 0) {
+                container.innerHTML =
+                    '<p class="cart-empty">No items yet. Choose something from the menu.</p>';
+
+                totalElement.textContent = "₱0";
+                return;
+            }
+
+            container.replaceChildren();
+
+            foodCart.forEach(item => {
+                const row = document.createElement("div");
+                row.className = "cart-item";
+
+                const info = document.createElement("span");
+                info.textContent = item.name;
+
+                const detail = document.createElement("small");
+                detail.textContent = `${item.quantity} × ₱${item.price}`;
+                info.appendChild(detail);
+
+                const right = document.createElement("span");
+                right.style.textAlign = "right";
+
+                const price = document.createElement("strong");
+                price.textContent =
+                    "₱" + (item.price * item.quantity).toLocaleString();
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.textContent = "Remove";
+
+                remove.addEventListener("click", () => {
+                    foodCart = foodCart.filter(cartItem => cartItem.key !== item.key);
+                    renderFoodCart();
+                });
+
+                right.append(price, document.createElement("br"), remove);
+                row.append(info, right);
+                container.appendChild(row);
+            });
+
+            const total = foodCart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+            );
+
+            totalElement.textContent = "₱" + total.toLocaleString();
+        }
+
+        function clearFoodCart() {
+            foodCart = [];
+            renderFoodCart();
+
+            document.getElementById("foodMessage").textContent = "Order cleared.";
+        }
+
+        function placeSampleFoodOrder() {
+            const message = document.getElementById("foodMessage");
+
+            if (foodCart.length === 0) {
+                message.textContent =
+                    "Please add at least one item before placing a sample order.";
+                return;
+            }
+
+            const total = foodCart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+            );
+
+            const orderNumber = Math.floor(1000 + Math.random() * 9000);
+
+            message.textContent =
+                `Sample order #${orderNumber} created. Total: ₱${total.toLocaleString()}. No real order was submitted.`;
+        }
+
+        // CONTACT FORM
+        // Opens the visitor's email application.
+        document.getElementById("contactForm").addEventListener("submit", event => {
+            event.preventDefault();
+
+            const name = document.getElementById("contactName").value.trim();
+            const email = document.getElementById("contactEmail").value.trim();
+            const subject = document.getElementById("contactSubject").value.trim();
+            const message = document.getElementById("contactMessage").value.trim();
+
+            if (!name || !email || !subject || !message) {
+                alert("Please complete all fields before continuing.");
+                return;
+            }
+
+            // Replace this with your real email address.
+            const recipient = "your.email@example.com";
+
+            const body = [
+                "Name: " + name,
+                "Email: " + email,
+                "",
+                message
+            ].join("\n");
+
+            const mailtoUrl = "mailto:" + recipient +
+                "?subject=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+
+            window.location.href = mailtoUrl;
+        });
+    </script>
+
+</body>
+
+</html>
